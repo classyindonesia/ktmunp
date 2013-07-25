@@ -24,7 +24,7 @@
 
   
   ?>
-<div style="margin-left: 2px" class="pull-left span5">
+<div style="margin-left: -1.2em;border-right: 2px solid #ccc;" class="pull-left span5">
 
     <img style="margin-bottom: -13.6em;" src="<?php echo base_url();?>includes/img/template/<?php echo $val;?>" height="215" width="345" />
    
