@@ -67,7 +67,7 @@
     <tr>
    <td rowspan="6" valign="bottom" style="padding-left:1em; width: 100px" >
 
-<img style="margin-bottom: 0px; border: 1px solid white; padding: 2px;"  src="<?php echo $foto;?>" width="65" height="85" />
+<img style="margin-bottom: 0.9em; border: 1px solid white; padding: 2px;"  src="<?php echo $foto;?>" width="65" height="85" />
          
         </td>
         </tr>
