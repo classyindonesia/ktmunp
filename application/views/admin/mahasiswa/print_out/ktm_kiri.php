@@ -87,7 +87,7 @@
 
 ?>
        
-<img style="margin-bottom: 0px; border: 1px solid white; padding: 2px;"  src="<?php echo $foto;?>" width="65" height="85" />
+<img style="margin-bottom: 0px; border: 1px solid white; padding: 2px;"  src="<?php echo $foto;?>" width="90" height="110" />
 
         </td>
         </tr>

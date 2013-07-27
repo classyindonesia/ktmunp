@@ -49,7 +49,7 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'ktm';
+$db['default']['username'] = 'aplikasi';
 $db['default']['password'] = '123456';
 $db['default']['database'] = 'ktm';
 $db['default']['dbdriver'] = 'mysql';
