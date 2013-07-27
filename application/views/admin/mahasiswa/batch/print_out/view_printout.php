@@ -76,7 +76,7 @@ $this->load->view('komponen/css');
     ?>
     
 
-             <div style="margin-right: -2px">
+             <div style="margin-right: -0.9em;border : 3px solid #aaa;">
                 <img class="pull-right" src="<?php echo base_url();?>includes/img/template/<?php echo $val2;?>" width="345" height="215" />
              </div>
          

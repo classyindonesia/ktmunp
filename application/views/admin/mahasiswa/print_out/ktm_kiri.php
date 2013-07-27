@@ -24,7 +24,7 @@
 
   
   ?>
-<div style="margin-left: -1.2em;border-right: 2px solid #ccc;" class="pull-left span5">
+<div style="margin-left: 1.7em; border-right:2px solid #ccc;" class="pull-left span5">
 
     <img style="margin-bottom: -13.6em;" src="<?php echo base_url();?>includes/img/template/<?php echo $val;?>" height="215" width="345" />
    
@@ -87,7 +87,7 @@
 
 ?>
        
-<img style="margin-bottom: 0px; border: 1px solid white; padding: 2px;"  src="<?php echo $foto;?>" width="90" height="110" />
+<img style="margin-bottom: -0.9em;; border: 1px solid white; padding: 2px;"  src="<?php echo $foto;?>" width="90" height="110" />
 
         </td>
         </tr>
