@@ -1,3 +1,6 @@
+<script type="text/javascript" src="<?php echo base_url();?>includes/js/webcam.js"></script>
+
+
 <?php
 $this->load->view('admin/mahasiswa/tab_menu');
 

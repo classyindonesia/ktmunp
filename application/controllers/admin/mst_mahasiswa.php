@@ -365,7 +365,28 @@ $this->load->library('mpdf');
             'nama_file'     => $nama_gambar,
             'op'            => $this->fungsi->op()
             );
-        $this->db->insert('mst_foto', $data);
+         $this->db->insert('mst_foto', $data);
+
+
+        $this->db->where('id', $id);
+        $mhs = $this->db->get('mst_mahasiswa')->row_array();
+            if(!empty($mhs)){
+                $no_hp = $mhs['no_hp'];
+            }else{
+                $no_hp = '-';
+            }
+        $data2=array(
+            'mst_mahasiswa_id'      => $id,
+            'ref_jenis_request_id'  => 2,
+            'tgl'                   => date('Y-m-d'),
+            'aktif'                 => 2,
+            'no_hp'                 => $no_hp,
+            'op'                    => $this->fungsi->op()
+            );
+        $this->db->insert('mst_request', $data2);
+
+
+
         $pesan = "user ".$this->session->userdata('username')." berhasil menambahkan foto untuk mahasiswa yg mempunyai nim <b>".$id."</b>";
         $this->fungsi->log($pesan);           
         if (!$result) {

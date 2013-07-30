@@ -1,13 +1,30 @@
-<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-<div class="modal-header">
-<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-<h3 id="myModalLabel">List KTM</h3>
-</div>
-<div class="modal-body">
- 
-</div>
- 
-</div>
+
+
+
+
+
+
+
+
+<script type="text/javascript" src="<?php echo base_url();?>includes/js/webcam.js"></script>
+
+<?php $this->load->view('admin/mahasiswa/modal_jepret') ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <table class="table" >
     <tr>
@@ -229,37 +246,29 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
 </script>
 
 
-<!-- Button to trigger modal -->
-      
-    <!-- Modal -->
-    <div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
  
-        
-     <div class="modal-body">
-        <div id="modal-body1">
-          <div id="loading_profil">
-              <img src="<?php echo base_url()?>includes/img/ajax-loader.gif" />
-        </div></div>
-<!--    <p>One fine body…</p>-->
-     
-    </div>
-        
-
- 
-    </div>
-    
     
     <script>
     function load_profil(id,msg){
+        
+      // $('#myModal').modal('show');
+       
     $('#myModal').modal({
     backdrop: true,
     keyboard: true
+}).css({
+    width: 'auto',
+    'margin-left': function () {
+        return -($(this).width() / 2);
+    }
 });
 
 
     
-   $('.modal-body').load('<?php echo site_url("admin/mst_mahasiswa/view_profil");?>/'+escape(id));
-
-    }        
+   $('#modal-body1').load('<?php echo site_url("admin/mst_mahasiswa/view_profil");?>/'+escape(id));
+  
+  //alert('<?php echo site_url("admin/mst_mahasiswa/view_profil");?>/'+escape(id));
+  
+    }      
         
    </script>
