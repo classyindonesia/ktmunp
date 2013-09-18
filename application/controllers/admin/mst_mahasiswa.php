@@ -189,6 +189,19 @@ $this->load->library('mpdf');
     $data['content'] = "admin/mahasiswa/search/index";   
     $this->load->view('admin/template', $data);
     }
+
+
+
+
+    function pencarian2(){
+    $data['mahasiswa'] = "class='active'";        
+    $data['pencarian2'] = "class='active'";
+    $data['masa_berlaku'] = $this->dropdown_model->batch();
+    $data['content'] = "admin/mahasiswa/search2/index";   
+    $this->load->view('admin/template', $data);
+    }
+
+
     
     
     
@@ -212,7 +225,19 @@ $this->load->library('mpdf');
         
         
     }
-    
+
+    function search2(){
+        if($this->input->post('search')){
+        $data['no'] = $this->input->post('no');
+        $data['mst_mahasiswas'] = $this->mst_mahasiswa_model->search2();
+        $this->load->view('admin/mahasiswa/search2/list_mahasiswa', $data);    
+        }else{
+            show_404('page');
+        }
+        
+        
+    }
+
     
     function reload_tabel(){
         if($this->input->post('reload')){

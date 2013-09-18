@@ -6,5 +6,6 @@
     <li <?php if(isset($jurusan))echo $jurusan;?> ><?php echo anchor('admin/mst_jurusan', 'Jurusan');?></li>
     <li <?php if(isset($fakultas))echo $fakultas;?> ><?php echo anchor('admin/mst_fakultas', 'Fakultas');?></li>
     <li <?php if(isset($import))echo $import;?> ><?php echo anchor('admin/import', 'Import Data');?></li>
+    <li <?php if(isset($pencarian2))echo $pencarian2;?> ><?php echo anchor('admin/mst_mahasiswa/pencarian2', 'Pencarian 2');?></li>
     
     </ul>
