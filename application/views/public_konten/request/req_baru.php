@@ -248,3 +248,28 @@
     </div>
  
     </div>
+
+
+        <script>
+
+    $('#myModal').on('hidden', function () {
+    window.location.reload();
+    })
+
+$(document).ready(function(){
+
+  $('#nim').val('');
+  $('#ref_jenis_kelamin_id').val('');
+  $('#nama').val('');
+  $('#fakultas_jurusan').val('');
+  $('#tempat_lahir').val('');
+  $('#tgl').val('');
+  $('#bln').val('');
+  $('#thn').val('');
+  $('#alamat').val('');
+  $('#no_hp').val('');
+ 
+})
+
+
+    </script>
