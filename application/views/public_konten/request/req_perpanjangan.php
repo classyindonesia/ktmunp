@@ -168,3 +168,24 @@
     </div>
  
     </div>
+
+
+    <script>
+
+    $('#myModal').on('hidden', function () {
+    window.location.reload();
+    })
+
+$(document).ready(function(){
+
+  $('#nim').val('');
+  $('#nama').val('');
+  $('#fakultas_jurusan').val('');
+  $('#ttl').val('');
+  $('#alamat').val('');
+  $('#no_hp').val('');
+ 
+})
+
+
+    </script>

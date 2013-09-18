@@ -49,10 +49,10 @@
 <script>
 
 $(document).ready(function(){
-   
    $('#konten').print();
-   
    $('#loading').fadeOut();
+
+ 
     
 });
 
