@@ -217,7 +217,16 @@ $this->load->library('mpdf');
     function search(){
         if($this->input->post('search')){
         $data['no'] = $this->input->post('no');
-        $data['mst_mahasiswas'] = $this->mst_mahasiswa_model->search();
+        $cari = $this->mst_mahasiswa_model->search();
+        $cari2 = $this->mst_mahasiswa_model->search_npm();
+
+        if(!empty($cari)){
+        $data['mst_mahasiswas'] = $cari;
+        }else{
+            $data['mst_mahasiswas'] = $cari2;
+        }
+
+
         $this->load->view('admin/mahasiswa/search/list_mahasiswa', $data);    
         }else{
             show_404('page');
@@ -229,7 +238,15 @@ $this->load->library('mpdf');
     function search2(){
         if($this->input->post('search')){
         $data['no'] = $this->input->post('no');
-        $data['mst_mahasiswas'] = $this->mst_mahasiswa_model->search2();
+            $cari = $this->mst_mahasiswa_model->search();
+            $cari2 = $this->mst_mahasiswa_model->search_npm();
+
+            if(!empty($cari)){
+            $data['mst_mahasiswas'] = $cari;
+            }else{
+                $data['mst_mahasiswas'] = $cari2;
+            }
+            
         $this->load->view('admin/mahasiswa/search2/list_mahasiswa', $data);    
         }else{
             show_404('page');

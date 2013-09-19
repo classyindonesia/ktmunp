@@ -32,7 +32,7 @@
            <table>
                <tr>
                    <td>
-                     <input placeholder="cari berdasarkan nama..." type="text" id="input_search" />   
+                     <input placeholder="search by nama/npm..." type="text" id="input_search" />   
                    </td>
                    <td>
                     <button id="search" class="btn btn-info"><i class="icon-search"></i> search</button>

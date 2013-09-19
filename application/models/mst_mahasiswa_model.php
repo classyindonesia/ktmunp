@@ -22,16 +22,14 @@ class Mst_mahasiswa_model extends CI_Model {
         }
     }
 
-   
-    function search2(){
+
+    function search_npm(){
         $this->db->select('M.*, JK.nama as jenis_kelamin, J.nama as jurusan, F.nama as fakultas, J.mst_fakultas_id');
         $this->db->join('mst_jurusan J', 'J.id=M.mst_jurusan_id', 'left');
         $this->db->join('mst_fakultas F', 'F.id=J.mst_fakultas_id', 'left');
         $this->db->join('ref_jenis_kelamin JK', 'JK.id=M.ref_jenis_kelamin_id');
-       // $this->db->join('mst_foto FT', 'M.id=FT.mst_mahasiswa_id');
-
         $this->db->where('M.aktif', 1);
-        $this->db->like('M.nama', $this->input->post('nama'));
+        $this->db->like('M.id', $this->input->post('nama'));
         $this->db->order_by('M.urut DESC');
         $result = $this->db->get('mst_mahasiswa M');
         if ($result->num_rows() > 0) {
@@ -40,6 +38,7 @@ class Mst_mahasiswa_model extends CI_Model {
             return array();
         }
     }
+ 
 
 
     
