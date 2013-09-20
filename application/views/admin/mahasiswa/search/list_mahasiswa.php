@@ -82,6 +82,15 @@ $('#check_all').click(function(){
                
                <span class="no" id="<?php echo $no?>">  </span>
                <i onClick="load_profil('<?php echo  $this->aesfunction->paramEncrypt($mst_mahasiswa['id']);?>')" class="icon-edit"></i>
+               
+               <i id='cetak_perpanjangan<?php echo $no; ?>' style='cursor:pointer;' class=' icon-print'></i>
+               <script>
+               $('#cetak_perpanjangan<?php echo $no; ?>').click(function(){
+                $('#myModal').modal('show');
+                $('.modal-body').load("<?php echo base_url()?>index.php/request/cetak/<?php echo $mst_mahasiswa['id'];?>");
+               })
+               </script>
+
 </td>
          </tr>
          
