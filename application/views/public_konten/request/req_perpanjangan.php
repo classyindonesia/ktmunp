@@ -37,7 +37,7 @@
     </tr>      
      <tr>
         <td>No HP*</td>
-        <td><?php echo form_input('nim', '', 'id="no_hp"   placeholder="Nomor HP.."');?></td>
+        <td><?php echo form_input('nim', '', 'id="no_hp"  readonly=0 placeholder="Nomor HP.."');?></td>
     </tr>     
     
 
@@ -52,6 +52,28 @@
 <script>
     $(document).ready(function(){
        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
        
        $('#nim').blur(function(){
            $('#loading').fadeIn(); //fadein
@@ -72,6 +94,9 @@
                success:function(check){
                 if(check == '0'){
                     alert('data tidak ada yg cocok');
+
+                  }else if(check == '2'){
+                    alert('belum ada foto');
                 }else{
                     isi = check.split('||');
                     $('#nama').val(isi[0]); //nama

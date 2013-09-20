@@ -33,14 +33,20 @@ Class Request extends Ci_controller{
     
     function check_perpanjangan(){
         $check = $this->input->post('check');
+
+
+
         if($check){
-            
         $nim = trim($this->input->post('nim')); 
         //trim berfungsi untuk menghilangkan spasi di depan dan belakang
         //ada jg fungsi lain yg serupa, yaitu rtrim dan ltrim
         //yaitu hanya menghilangkan spasi di depan saja or belakang saja
-        
-        
+
+        $this->db->where('mst_mahasiswa_id', $nim);
+        $foto = $this->db->get('mst_foto');
+        if($foto->num_rows() <= 0){
+          echo 2;
+        }else{
         $this->db->select('M.*, MF.nama as fakultas, MJ.nama as jurusan');
         $this->db->join('mst_jurusan MJ', 'M.mst_jurusan_id=MJ.id');
         $this->db->join('mst_fakultas MF', 'MJ.mst_fakultas_id=MF.id');
@@ -61,14 +67,12 @@ Class Request extends Ci_controller{
         }
         
         
-            
+         } //else foto      
         
         }else{
             show_404('page');
         }
-        
-        
-        
+           
     }
     
     
