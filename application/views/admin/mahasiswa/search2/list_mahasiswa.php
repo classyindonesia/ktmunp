@@ -103,6 +103,7 @@ $('#check_all').click(function(){
                $('#cetak_perpanjangan<?php echo $no; ?>').click(function(){
                 $('#myModal').modal('show');
                 $('.modal-body').load("<?php echo base_url()?>index.php/request/cetak/<?php echo $mst_mahasiswa['id'];?>");
+               $('.modal-body').attr('id', 'konten');
                })
                </script>
 
