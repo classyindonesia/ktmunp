@@ -195,7 +195,43 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
    } //end of function
     
     
-    
+//tekan tombol enter
+$("#input_search").keypress(function(e) {
+    if(e.which == 13) {
+
+       $('loading_search').show();       
+       nama = $('#input_search').val();
+       if(nama == ''){
+           alert('nama blm dimasukan');
+           $('loading_search').fadeOut();
+           return false;
+       }
+       
+       
+       
+       
+       form_data = {
+           nama : nama,
+           search : 1,
+           no : <?php echo $no ?>
+       }
+       
+       $.ajax({
+           url : "<?php echo site_url('admin/mst_mahasiswa/search2');?>",
+           type : 'post',
+           data : form_data,
+           success:function(sukses){
+               $('loading_search').fadeOut();
+               $('#konten').html(sukses);
+           }
+       })
+        
+     return false;
+ 
+
+   }
+});
+        
     
     
     
@@ -233,15 +269,11 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
                $('#konten').html(sukses);
            }
        })
-       
-       
-       
-       
-       
-       
         
      return false;
     });
+
+
 
 </script>
 

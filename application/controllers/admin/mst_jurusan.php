@@ -23,7 +23,7 @@ class mst_jurusan extends CI_Controller {
         $this->pagination->initialize($config);
         $data['content'] = 'admin/mst_jurusan_all';
         $data['pagination'] = $this->pagination->create_links();
-        $data['jurusan']    = 'class="active"';
+        $data['jurusan_nav']    = 'class="active"';
         $data['mst_jurusans'] = $this->mst_jurusan_model->retrieve_all($config['per_page'], $this->uri->segment(4));
         $this->load->view('admin/template', $data);
         

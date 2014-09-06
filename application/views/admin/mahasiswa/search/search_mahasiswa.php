@@ -198,25 +198,17 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
     
     
     
-    
-    
-    
-    
-    
-    $('#search').click(function(){
-       // alert('ok');
-       
-       $('loading_search').show();
-       
-       nama = $('#input_search').val();
-       if(nama == ''){
-           alert('nama blm dimasukan');
-           $('loading_search').fadeOut();
-           return false;
-       }
-       
-       
-       
+//tekan tombol enter
+$("#input_search").keypress(function(e) {
+    if(e.which == 13) {
+
+  $('loading_search').show();
+    nama = $('#input_search').val();
+     if(nama == ''){
+         alert('nama blm dimasukan');
+        $('loading_search').fadeOut();
+          return false;
+       } 
        
        form_data = {
            nama : nama,
@@ -233,11 +225,42 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
                $('#konten').html(sukses);
            }
        })
+     return false;
+
+   }
+});
+    
+
+
+
+    
+    
+//tekan tombol search    
+$('#search').click(function(){
+  $('loading_search').show();
+    nama = $('#input_search').val();
+     if(nama == ''){
+         alert('nama blm dimasukan');
+        $('loading_search').fadeOut();
+          return false;
+       } 
        
+       form_data = {
+           nama : nama,
+           search : 1,
+           no : <?php echo $no ?>
+       }
        
-       
-       
-       
+       $.ajax({
+           url : "<?php echo site_url('admin/mst_mahasiswa/search');?>",
+           type : 'post',
+           data : form_data,
+           success:function(sukses){
+               $('loading_search').fadeOut();
+               $('#konten').html(sukses);
+           }
+       })
+        
        
         
      return false;

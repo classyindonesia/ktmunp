@@ -29,7 +29,21 @@ class Fungsi {
         $selisih = $jd_2 - $jd_1;
         return $selisih;
     }
-    
+
+function angka_romawi($integer, $upcase = true){ 
+    $table = array('M'=>1000, 'CM'=>900, 'D'=>500, 'CD'=>400, 'C'=>100, 'XC'=>90, 'L'=>50, 'XL'=>40, 'X'=>10, 'IX'=>9, 'V'=>5, 'IV'=>4, 'I'=>1); 
+    $return = ''; 
+    while($integer > 0){ 
+        foreach($table as $rom=>$arb){ 
+            if($integer >= $arb){ 
+                $integer -= $arb; 
+                $return .= $rom; 
+                break; 
+            } 
+        } 
+    } 
+    return $return; 
+}     
   
 function alphaID($in, $to_num = false, $pad_up = false, $passKey = null)
 {
@@ -202,9 +216,25 @@ function get_dir_size($directory)
     
     
     
+  public static function convert_to_number($rupiah = NULL){
+        $angka =  preg_replace('/[^0-9,]/s', '', $rupiah); // 
+        $angka = intval(str_replace( ',', '', $angka));
+        return $angka;
+   }    
     
-    
-    
+function rupiah($nilaiUang){
+  $nilaiRupiah  = "";
+  $jumlahAngka  = strlen($nilaiUang);
+  while($jumlahAngka > 3){
+    $nilaiRupiah = "." . substr($nilaiUang,-3) . $nilaiRupiah;
+    $sisaNilai = strlen($nilaiUang) - 3;
+    $nilaiUang = substr($nilaiUang,0,$sisaNilai);
+    $jumlahAngka = strlen($nilaiUang);
+  }
+
+  $nilaiRupiah = "Rp " . $nilaiUang . $nilaiRupiah . ",-";
+  return $nilaiRupiah;
+}    
     
     function bulan2($rrr)
 	{
@@ -227,21 +257,28 @@ function get_dir_size($directory)
     
     
     
-    function date_to_tgl($in)
-	{
-	$tgl = substr($in,8,2);
-	$bln = substr($in,5,2);
-	$thn = substr($in,0,4);
-	if(checkdate($bln,$tgl,$thn))
-	{
-	   $out=substr($in,8,2)." ".$this->bulan2(substr($in,5,2))." ".substr($in,0,4);
-	}
-	else
-	{
-	   $out = "<span class='error'>N/A</span>";
-	}
-	return $out;
-	}
+function date_to_tgl($in)
+    {
+    /*
+    $tgl = substr($in,8,2);
+    $bln = substr($in,5,2);
+    $thn = substr($in,0,4);
+  */
+  $arr = explode("-", $in);
+  $tgl = $arr[2];
+  $bln = $arr[1];
+  $thn = $arr[0];
+
+    if(checkdate($bln,$tgl,$thn))
+    {
+       $out=$tgl." ".Fungsi::bulan2($bln)." ".$thn;
+    }
+    else
+    {
+       $out = "<span class='error'>N/A</span>";
+    }
+    return $out;
+    }
         
         
         function setup_variable($var){

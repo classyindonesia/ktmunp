@@ -1,3 +1,5 @@
+ 
+
 <table id="load_more" style="font-size: 10px; font-weight: bold;" class="table table-bordered">
     <tr class="well">
         <td width="10px"> <?php $data = array(
@@ -15,7 +17,7 @@ echo form_checkbox($data); ?> </td>
         <td width="150px">FAK /JURUSAN</td>
         <td width="10px">Foto</td>
         <td width="50px">JENIS KELAMIN</td>
-        <td width="50px">Action</td>
+        <td width="60px">Action</td>
 
     </tr>
     
@@ -92,10 +94,38 @@ $('#check_all').click(function(){
                })
                </script>
 
+               <i style='cursor:pointer;' id='add_antrian<?php echo $no; ?>' data-toggle="tooltip" title="tambah ke antrian request" class='icon-circle-arrow-right'></i>
+            <script type="text/javascript">
+            $('#add_antrian<?php echo $no ?>').click(function(){
+                setuju = confirm('are you sure?');
+                if(setuju == true){
+                    $.ajax({
+                        url : '<?php echo base_url(); ?>index.php/request/submit_perpanjangan',
+                        data : { nim : '<?php echo $mst_mahasiswa["id"] ?>', no_hp : '<?php echo  $mst_mahasiswa["no_hp"]; ?>', submit : 1},
+                        type : 'post',
+                        error: function(err){
+                            alert('terjadi kesalahan pada sisi server!');
+                        },
+                        success:function(ok){
+                            $('#myModal').modal('show');
+                            $('.modal-body').load('<?php echo base_url();?>index.php/request/cetak/<?php echo $mst_mahasiswa["id"];?>')
+                             $('.modal-body').attr('id', 'konten');
+                            //alert('data telah berhasil ditambahkan ke dlm antrian')
+                        }
+                    })
+                }
+            });
+            </script>
+
 </td>
          </tr>
          
         <script>
+
+
+
+
+
              $(document).ready(function(){
  
  

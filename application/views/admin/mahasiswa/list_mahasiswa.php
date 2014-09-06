@@ -83,20 +83,15 @@ $('#check_all').click(function(){
                <i class="icon-th-large"></i>  </a>
                
                <span class="no" id="<?php echo $no?>">  </span>
-               
-<!--               <script>
-                   $('#<?php echo $this->aesfunction->paramEncrypt($mst_mahasiswa['id']);?>').click(function(){
-                       
-                       <?php
-                       if( $status_foto == 0) 
-                           echo 'klik_profil(0);';
-                       else 
-                           echo 'klik_profil(1);';
-                           ?>
-                       
-                       
-                   })
-               </script>-->
+                <i rel='tooltip' title='view data pembayaran' id='view_pembayaran<?php echo $this->aesfunction->paramEncrypt($mst_mahasiswa['id']);?>' class='icon-list' style='cursor:pointer'></i>
+  <script type="text/javascript">
+$('#view_pembayaran<?php echo $this->aesfunction->paramEncrypt($mst_mahasiswa["id"]);?>').click(function(){
+  $('#myModal').modal('show');
+  $('.modal-body').load('<?php echo base_url();?>index.php/admin/mst_mahasiswa/view_pembayaran_home/<?php echo $mst_mahasiswa["id"]?>')
+})
+  </script>
+
+ 
          </tr>
 <?php
 $no++;

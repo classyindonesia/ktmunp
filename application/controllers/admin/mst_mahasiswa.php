@@ -235,6 +235,8 @@ $this->load->library('mpdf');
         
     }
 
+ 
+
     function search2(){
         if($this->input->post('search')){
         $data['no'] = $this->input->post('no');
@@ -317,6 +319,19 @@ $this->load->library('mpdf');
         $data['pagination'] = $this->pagination->create_links();
         $data['mst_mahasiswas'] = $this->mst_mahasiswa_model->retrieve_all($config['per_page'], $this->uri->segment(4));
         $this->load->view('admin/template', $data);
+    }
+
+
+    function view_pembayaran_home($npm = NULL){
+        $this->load->view('admin/mahasiswa/view_pembayaran/index');
+    }
+
+    function get_data_bayar(){
+        $url = $this->fungsi->setup_variable('url_duml').'get_data_bayar/'.$this->input->post('npm').'/'.$this->input->post('ref_semester_id');
+        $response = file_get_contents($url); //Converting in json string
+        $data['data'] = json_decode($response);
+
+        $this->load->view('admin/mahasiswa/view_pembayaran/view_pembayaran', $data);
     }
 
     function add() {
