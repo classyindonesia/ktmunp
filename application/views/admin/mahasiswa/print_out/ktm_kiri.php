@@ -26,7 +26,7 @@
   ?>
 <div style="margin-left: 1.7em; border-right:2px solid #ccc;" class="pull-left span5">
 
-    <img style="margin-bottom: -13.6em;" src="<?php echo base_url();?>includes/img/template/<?php echo $val;?>" height="215" width="345" />
+    <img style="margin-bottom: -13.6em;" src="./includes/img/template/<?php echo $val;?>" height="215" width="345" />
    
 
     
@@ -42,7 +42,7 @@
                <table width="340" >
                    <tr>
                        <td align="center">
-                       <img  src="<?php echo base_url();?>includes/img/template/<?php echo $logo;?>" width="40" height="40" />
+                       <img  src="./includes/img/template/<?php echo $logo;?>" width="40" height="40" />
                        </td>
                        <td align="<?php echo $align_header;?>">
                         <p style=" margin: 1px;<?php echo 'color: '.$warna_header1.';'.$style_head1;?>"><?php echo $value_head1;?></p>
@@ -70,6 +70,15 @@
    <td rowspan="6" valign="bottom" style="padding-left:1em;  width: 100px" >
 
 <?php
+/*
+$params['data'] = 'This is a text to encode become QR Code';
+$params['level'] = 'H';
+$params['size'] = 10;
+$params['savename'] = FCPATH.'includes/qrcode/tes.png';
+$this->ciqrcode->generate($params);
+*/
+
+
     $this->db->where('mst_mahasiswa_id', $id);
     $this->db->order_by('id DESC');
     $this->db->limit(1);
@@ -77,13 +86,15 @@
     foreach($q->result_array() as $list2){
         $foto = $list2['nama_file'];
   if(!empty($foto)){
-         $foto = base_url()."includes/img/foto_mahasiswa/".$foto;
+         $foto = "./includes/img/foto_mahasiswa/".$foto;
       }else{
-           $foto = base_url()."includes/img/contoh_foto.jpg";
+           $foto = "./includes/img/contoh_foto.jpg";
     }
 
         }
     
+
+  
 
 ?>
        
@@ -118,7 +129,8 @@
             </tr>
             
              <tr>
-                <td style="font-family: roman, 'times new roman', times, serif;font-size: 10px;font-weight: bold">            <?php  echo $tempat_lahir;?>, <?php  echo $this->fungsi->date_to_tgl($tgl_lahir);?>
+                <td style="font-family: roman, 'times new roman', times, serif;font-size: 10px;font-weight: bold">            
+                  <?php  echo $tempat_lahir;?>, <?php  echo $this->fungsi->date_to_tgl($tgl_lahir);?>
             </td>
              </tr>
              
@@ -127,11 +139,15 @@
                <td style="font-size: 8px;">
            <?php  echo $alamat;?>
             </td>
+
+
              </tr>
+
+ 
              
              
     <tr>
-        <td style="font-size:10px; padding-left: 15px; padding-top: 1.5em; font-family: brushscript;color:red;" colspan="2">
+        <td style="font-size:10px; padding-left: 15px; padding-top: 1.5em; font-family: brushscript;color:red;" colspan='2' >
              <?php $batch_id = $this->uri->segment(5);
             $this->db->where('id', $batch_id);
             $q = $this->db->get('mst_batch');
@@ -144,8 +160,9 @@
                 }
             }
             ?>
-            
+          
           </td>
+
           </tr>
  
 </table>  

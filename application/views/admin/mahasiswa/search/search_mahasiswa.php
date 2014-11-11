@@ -60,6 +60,8 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
     <button id="hapus_cetak" class="btn btn-danger pull-right"> <i class="icon-refresh"></i> clear</button>
 
     <button id="checkout_kantong" class="btn btn-info pull-right"> <i class="icon-download-alt"></i> download</button>
+    <button id="checkout_kantong2" class="btn btn-info pull-right"> <i class="icon-download-alt"></i> download 2</button>
+
 </td>
 
 </tr>
@@ -170,6 +172,37 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
     });//end of click function
     
     
+
+    $('#checkout_kantong2').click(function(){
+    
+    batch_id = $('#batch_id').val();
+    if(batch_id == '0'){
+        alert('masa berlaku belum ditentukan');
+        return false;
+    }
+    
+    
+    form_data={
+        check : 1
+    }
+    $.ajax({
+        url : '<?php echo site_url("admin/mst_mahasiswa/cetak_kantong2")?>',
+        data : form_data,
+        type : 'post',
+        success:function(check){
+            if(check > 0){
+                window.open('<?php echo site_url("admin/mst_mahasiswa/cetak_kantong2")?>/'+batch_id, '_blank');
+               // hapus_kantong();    
+               //location.reload();
+            }else{
+                alert('anda belum memilih sama sekali');
+            }
+        }
+    })
+
+    
+    });//end of click function
+
     
     
        function update_kantong(id_mahasiswa){

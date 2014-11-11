@@ -38,8 +38,9 @@
             }
             ?>
         </td>
-        <td  width="100">
+        <td  width="150">
            <button onClick="export_batch(<?php echo $list['id'];?>)"  class="btn btn-success"> export </button>
+           <button onClick="export_batch2(<?php echo $list['id'];?>)"  class="btn btn-success"> export 2 </button>
         </td>
     </tr>
     <?php
@@ -55,7 +56,11 @@ function export_batch(batch_id){
     window.open('<?php echo site_url("admin/mst_mahasiswa/cetak_batch/")?>/'+batch_id, '_blank');
     
 }
-
+function export_batch2(batch_id){
+    
+    window.open('<?php echo site_url("admin/mst_mahasiswa/cetak_batch2/")?>/'+batch_id, '_blank');
+    
+}
 </script>
 
 

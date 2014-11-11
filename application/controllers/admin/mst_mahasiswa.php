@@ -9,7 +9,7 @@ class mst_mahasiswa extends CI_Controller {
             redirect('admin_login', 'refresh');
         }
         
-        $this->load->library(array('fungsi', 'aesfunction', 'cart'));
+        $this->load->library(array('fungsi', 'aesfunction', 'cart', 'ciqrcode'));
         $this->load->model(array('mst_mahasiswa_model', 'dropdown_model', 'mst_foto_model'));
     }
     
@@ -125,7 +125,30 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
         }
        
    }
-   
+
+
+   function cetak_kantong2($batch_id = NULL){
+        $item = $this->cart->total_items();
+        if($this->input->post('check')){
+            
+            echo $this->cart->total_items();
+            
+        }else{
+        if($item > 0){
+            $data= "";
+            foreach($this->cart->contents() as $item){
+                $data = $data.''.$item['name'].'-';
+            }
+             $this->cart->destroy();
+            redirect("admin/mst_mahasiswa/cetak2/".$data.'/'.$batch_id);
+        }else{
+            show_404('page');
+        }
+        }
+       
+   }   
+
+
    function clear_kantong(){
        if($this->input->post('update')){
            
@@ -150,10 +173,24 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
   $this->mpdf->WriteHTML($stylesheet,1);
   $this->mpdf->WriteHTML($html);
   $this->mpdf->debug = true;
-  $this->mpdf->Output('doc.pdf','I');   
+  $this->mpdf->Output('ktm_'.date('Y_m_d_-_H:i:s').'.pdf','I');     
   }
     
-    
+ 
+   function cetak2($id = NULL){
+    $data['arr'] = explode("-", $id);
+    $data['data'] = 0; 
+//  $html = $this->load->view("test",$data,TRUE);
+    $html = $this->load->view("admin/mahasiswa/print_out2/view_printout", $data, TRUE);
+//  $this->load->library('mpdf56/mpdf');
+    $this->load->library('mpdf');
+  //$this->mpdf=new mPDF('c','A4','','',4,4,4,4,4,4);
+  $stylesheet = file_get_contents('./includes/css/bootstrap.css');
+  $this->mpdf->WriteHTML($stylesheet,1);
+  $this->mpdf->WriteHTML($html);
+  $this->mpdf->debug = true;
+  $this->mpdf->Output('ktm_'.date('Y_m_d_-_H:i:s').'.pdf','I');   
+  }   
     
     
     
@@ -162,43 +199,45 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
     
     
     function cetak_batch($id = NULL){
-   // $data['arr'] = explode("-", $id);
-    $data['data'] = 0; 
- 
-//  $html = $this->load->view("test",$data,TRUE);
-    $html = $this->load->view("admin/mahasiswa/batch/print_out/view_printout", $data, TRUE);
+        $data['data'] = 0; 
+        $html = $this->load->view("admin/mahasiswa/batch/print_out/view_printout", $data, TRUE);
+        $this->load->library('mpdf');    
+        $stylesheet = file_get_contents('./includes/css/bootstrap.css');
+        $this->mpdf->WriteHTML($stylesheet,1);
+        $this->mpdf->WriteHTML($html);
+        $this->mpdf->debug = true;
+        $this->mpdf->Output('ktm_'.date('Y_m_d_-_H:i:s').'.pdf','I');     
+    }    
 
-//    $pesan = "user ".$this->session->userdata('username')." berhasil mencetak KTM";
-//    $this->fungsi->log($pesan);     
-    
-//  $this->load->library('mpdf56/mpdf');
-$this->load->library('mpdf');    
- //  $this->mpdf=new mPDF('c','A4','','ScriptMT',32,25,27,25,16,13);
-   $stylesheet = file_get_contents('./includes/css/bootstrap.css');
-  $this->mpdf->WriteHTML($stylesheet,1);
-  $this->mpdf->WriteHTML($html);
-  $this->mpdf->debug = true;
-   $this->mpdf->Output('doc.pdf','I');   
+    function cetak_batch2($id = NULL){
+        $data['data'] = 0; 
+        $html = $this->load->view("admin/mahasiswa/batch/print_out2/view_printout", $data, TRUE);
+        $this->load->library('mpdf');    
+        $stylesheet = file_get_contents('./includes/css/bootstrap.css');
+        $this->mpdf->WriteHTML($stylesheet,1);
+        $this->mpdf->WriteHTML($html);
+        $this->mpdf->debug = true;
+        $this->mpdf->Output('ktm_'.date('Y_m_d_-_H:i:s').'.pdf','I');     
     }    
     
     
     function pencarian(){
-    $data['mahasiswa'] = "class='active'";        
-    $data['pencarian'] = "class='active'";
-    $data['masa_berlaku'] = $this->dropdown_model->batch();
-    $data['content'] = "admin/mahasiswa/search/index";   
-    $this->load->view('admin/template', $data);
+        $data['mahasiswa'] = "class='active'";        
+        $data['pencarian'] = "class='active'";
+        $data['masa_berlaku'] = $this->dropdown_model->batch();
+        $data['content'] = "admin/mahasiswa/search/index";   
+        $this->load->view('admin/template', $data);
     }
 
 
 
 
     function pencarian2(){
-    $data['mahasiswa'] = "class='active'";        
-    $data['pencarian2'] = "class='active'";
-    $data['masa_berlaku'] = $this->dropdown_model->batch();
-    $data['content'] = "admin/mahasiswa/search2/index";   
-    $this->load->view('admin/template', $data);
+        $data['mahasiswa'] = "class='active'";        
+        $data['pencarian2'] = "class='active'";
+        $data['masa_berlaku'] = $this->dropdown_model->batch();
+        $data['content'] = "admin/mahasiswa/search2/index";   
+        $this->load->view('admin/template', $data);
     }
 
 

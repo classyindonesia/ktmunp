@@ -11,8 +11,9 @@ $this->load->view('admin/mahasiswa/tab_menu');
 
 <table class="table" style="margin-bottom: -3em;"> 
     <tr>
-        <td width="100">
+        <td width="180">
 <input style="margin-bottom: 3em;" class="btn btn-info" type="button" id="cetak_ktm" value="export" /> 
+<input style="margin-bottom: 3em;" class="btn btn-info" type="button" id="cetak_ktm2" value="export 2" /> 
         </td>
         <td width="100">
              <?php echo form_dropdown("masa_berlaku", $masa_berlaku, "", 'class="input_form" id="batch_id"');?> 
@@ -22,8 +23,7 @@ $this->load->view('admin/mahasiswa/tab_menu');
     </tr>
 </table>
 
-<script>
-    
+ <script type="text/javascript">    
 function st(ip) {
   var str = ip;
   return str.replace(",","-");
@@ -58,7 +58,22 @@ $('#cetak_ktm').click(function(){
 
 })
 
+$('#cetak_ktm2').click(function(){
+        batch_id = $('#batch_id').val();
+        if(batch_id == '0'){
+            alert('masa berlaku blm ditentukan');
+            return false;
+        }
+        
+        
+       var nim =  st(ambil_checkbox());
+    if(nim != ''){
+        window.location.href = "<?php echo site_url('admin/mst_mahasiswa/cetak2');?>/"+nim+'/'+batch_id;
+    }else{
+        alert('anda blm memilih mahasiswa');
+    }
 
+})
 
 </script>
 
