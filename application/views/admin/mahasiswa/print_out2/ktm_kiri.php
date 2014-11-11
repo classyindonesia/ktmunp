@@ -76,7 +76,7 @@
         
 <tr>
 <td><br></td>
-           <td rowspan="5" valign="top" style="width: 100px" >
+           <td rowspan="2" valign="top" style="width: 100px" >
 
                 <?php
 
@@ -108,13 +108,13 @@
 
                 ?>
                        
-                <img style=" border: 1px solid black;"  src="<?php echo $foto;?>" width="90" height="110" />
+                <img style=" border: 1px solid black;margin-top: -0.3em;"  src="<?php echo $foto;?>" width="80" height="100" />
 
               </td>
 </tr>        
-
-        
-        
+ <tr>
+  <td>
+    <table style='margin-top: -1em;'>
         <tr> 
 
         <td width="200" style="font-size: 15px;font-family: Calibri;padding-left:1em;font-weight:bold;"   >
@@ -135,22 +135,30 @@
             <br>
              </td> 
             </tr> 
-<tr>
-<td colspan='2' align='right' style='font-family: Calibri; font-size: 9px;padding-top: 2px;'>
-    <?php $batch_id = $this->uri->segment(5);
-    $this->db->where('id', $batch_id);
-    $q = $this->db->get('mst_batch');
-    foreach($q->result_array() as $list){
+    </table>
+
+  </td>
+
+ </tr>
         
-       if($list['tampil_keterangan'] == 1){
-           echo $list['keterangan'];
-        }else{
-        echo 'Berlaku s.d. '.$this->fungsi->date_to_tgl($list['tgl_aktif']);
-        }
-    }
-    ?>
-</td>
-</tr>
+
+<tr>
+<td colspan='2' align='right' style='font-family: Calibri; font-size: 9px;'>
+ 
+                     <?php $batch_id = $this->uri->segment(5);
+                    $this->db->where('id', $batch_id);
+                    $q = $this->db->get('mst_batch');
+                    foreach($q->result_array() as $list){
+                        
+                       if($list['tampil_keterangan'] == 1){
+                           echo $list['keterangan'];
+                        }else{
+                        echo 'Berlaku s.d. '.$this->fungsi->date_to_tgl($list['tgl_aktif']);
+                        }
+                    }
+                    ?>
+    </td>
+ </tr>
 
              
              

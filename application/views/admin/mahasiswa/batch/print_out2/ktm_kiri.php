@@ -76,7 +76,7 @@
         
 <tr>
 <td><br></td>
-           <td rowspan="5" valign="top" style="width: 100px" >
+           <td rowspan="1" valign="top" style="width: 100px" >
 
                 <?php
 
@@ -107,13 +107,13 @@
 
                 ?>
                        
-                <img style=" border: 1px solid black;"  src="<?php echo $foto;?>" width="90" height="110" />
+                <img style=" border: 1px solid black;"  src="<?php echo $foto;?>" width="80" height="100" />
 
               </td>
-</tr>        
-
-        
-        
+</tr>    
+<tr>
+  <td>
+    <table style='margin-top:-1em;'>
         <tr> 
 
         <td width="200" style="font-size: 12px;font-family: Calibri;padding-left:1em;font-weight:bold;"   >
@@ -134,6 +134,11 @@
             <br>
              </td> 
             </tr> 
+    </table>
+  </td>
+</tr>    
+ 
+
 <tr>
 <td colspan='2' align='right' style='font-family: Calibri; font-size: 9px;padding-top: 5px;'>
     <?php $batch_id = $this->uri->segment(5);
