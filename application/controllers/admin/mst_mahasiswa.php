@@ -161,19 +161,23 @@ echo 'ada <b style="font-size: 20px;">'.$item.'</b> antrian yg hendak di cetak';
     
     
     
-    function cetak($id = NULL){
+    function cetak($id = NULL, $print = null){
     $data['arr'] = explode("-", $id);
     $data['data'] = 0; 
-//  $html = $this->load->view("test",$data,TRUE);
-    $html = $this->load->view("admin/mahasiswa/print_out/view_printout", $data, TRUE);
-//  $this->load->library('mpdf56/mpdf');
-    $this->load->library('mpdf');
-  //$this->mpdf=new mPDF('c','A4','','',4,4,4,4,4,4);
-  $stylesheet = file_get_contents('./includes/css/bootstrap.css');
-  $this->mpdf->WriteHTML($stylesheet,1);
-  $this->mpdf->WriteHTML($html);
-  $this->mpdf->debug = true;
-  $this->mpdf->Output('ktm_'.date('Y_m_d_-_H:i:s').'.pdf','I');     
+    if($print != null && $print == 'html'){
+        $this->load->view("admin/mahasiswa/print_out/view_printout", $data);        
+    }else{
+      $html = $this->load->view("admin/mahasiswa/print_out/view_printout", $data, TRUE);
+      $this->load->library('mpdf');
+      $stylesheet = file_get_contents('./includes/css/bootstrap.css');
+      $this->mpdf->WriteHTML($stylesheet,1);
+      $this->mpdf->WriteHTML($html);
+      $this->mpdf->debug = true;
+      $this->mpdf->Output('ktm_'.date('Y_m_d_-_H:i:s').'.pdf','I');          
+    }
+
+
+   
   }
     
  
